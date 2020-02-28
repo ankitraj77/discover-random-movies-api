@@ -1,7 +1,11 @@
 require('dotenv').config()
 const express = require('express')
+var cors = require('cors')
 const Request = require('request')
+
 const app = express()
+
+app.use(cors())
 
 const API_KEY = process.env.TMDB_API_KEY
 // const MovieDB = require('moviedb')('your api key');
