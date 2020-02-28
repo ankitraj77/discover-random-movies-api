@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+// https://expressjs.com/en/resources/middleware/cors.html
 var cors = require('cors')
 const Request = require('request')
 
