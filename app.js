@@ -15,12 +15,29 @@ app.get('/', (req, res) => {
 	res.send('MOVIE API')
 })
 
-// GET TEMPERATURE IN CELCIOUS
+// GET RANDMON MOVIE
 app.get('/get-movies', (req, res) => {
 	Request.get(
 		'https://api.themoviedb.org/3/discover/movie?api_key=' +
 			API_KEY +
 			'&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=2000',
+		(error, response, body) => {
+			if (error) {
+				return console.dir(error)
+			}
+			res.send(response)
+			return
+		}
+	)
+	// res.status(200).send('Movie List')
+})
+
+// GET GENRES
+app.get('/genres', (req, res) => {
+	Request.get(
+		'https://api.themoviedb.org/3/genre/movie/list?api_key=' +
+			API_KEY +
+			'&language=en-US',
 		(error, response, body) => {
 			if (error) {
 				return console.dir(error)
