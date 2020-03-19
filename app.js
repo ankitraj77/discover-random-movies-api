@@ -20,9 +20,6 @@ app.get('/get-movies', (req, res) => {
 	const minYear = 1920
 	const maxYear = new Date().getFullYear()
 	let randomYear = Math.floor(Math.random() * (maxYear - minYear) + minYear)
-	// let randomYear = Math.floor(Math.random() * Math.floor(maxYear))
-	// console.log(randomYear)
-
 	Request.get(
 		'https://api.themoviedb.org/3/discover/movie?api_key=' +
 			API_KEY +
@@ -36,10 +33,6 @@ app.get('/get-movies', (req, res) => {
 			return
 		}
 	)
-
-	// res.send('response')
-	// return
-	// res.status(200).send('Movie List')
 })
 
 // GET GENRES
