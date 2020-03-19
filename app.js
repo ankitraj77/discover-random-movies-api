@@ -15,12 +15,19 @@ app.get('/', (req, res) => {
 	res.send('MOVIE API')
 })
 
-// GET RANDMON MOVIE
+// GET RANDOM MOVIES
 app.get('/get-movies', (req, res) => {
+	const minYear = 1920
+	const maxYear = new Date().getFullYear()
+	let randomYear = Math.floor(Math.random() * (maxYear - minYear) + minYear)
+	// let randomYear = Math.floor(Math.random() * Math.floor(maxYear))
+	// console.log(randomYear)
+
 	Request.get(
 		'https://api.themoviedb.org/3/discover/movie?api_key=' +
 			API_KEY +
-			'&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=2000',
+			'&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_year=' +
+			randomYear,
 		(error, response, body) => {
 			if (error) {
 				return console.dir(error)
@@ -29,6 +36,9 @@ app.get('/get-movies', (req, res) => {
 			return
 		}
 	)
+
+	// res.send('response')
+	// return
 	// res.status(200).send('Movie List')
 })
 
@@ -51,5 +61,5 @@ app.get('/genres', (req, res) => {
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-	console.log(`Weather API listening on ${port}...`)
+	console.log(`MOVIE API listening on ${port}...`)
 })
